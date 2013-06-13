@@ -6,7 +6,7 @@ class BJ:
         self.init()
 
     def init(self):
-        self.lst  = [6,7,8,9,10,10,10,10,10,11]
+        self.lst  = [2,3,4,5,6,7,8,9,10,10,10,10,11]
         self.lst += self.lst
         self.lst += self.lst
         self.your_hand = [self.random_gen(), self.random_gen()]
@@ -50,9 +50,7 @@ class BJ:
         
     def black_jack(self):
 
-        print("Dealer's hidden card was ", self.dealer_hand[1])
-        print("Your score is ", sum(self.your_hand))
-        print("Dealer's score is " + str(sum(self.dealer_hand)) + "\n" )
+        self.display_it()
         
         if(self.validate_game()):
             return
@@ -81,12 +79,14 @@ class BJ:
             return True
 
         return False
-        
-    def test_equal(self):
-        if(sum(self.dealer_hand) == sum(self.your_hand)):
+
+    def display_it(self):
             print("Dealer's hidden card was ", self.dealer_hand[1])
             print("Your score is ", sum(self.your_hand))
             print("Dealer's score is " + str(sum(self.dealer_hand)) + "\n" )
+            
+    def test_equal(self):
+        if(sum(self.dealer_hand) == sum(self.your_hand)):
             mydata = input('PUSH! You and dealer hit same score, let\'s play again...\n')
             self.init()
             self.play()
@@ -99,7 +99,7 @@ class BJ:
         if(hs == 'H'):
             self.your_hand = self.your_hand + [self.random_gen()]
             self.print_your_hand()
-            print("Dealer: "+  str(self.dealer_hand[0]) + ", " + str(self.dealer_hand[0]))
+            print("Dealer: "+  str(self.dealer_hand[0]) + ", * \n")
             print("")
             self.hit_or_stand()
         elif(hs == 'S'):
@@ -108,13 +108,15 @@ class BJ:
             print('You should press H or S to Hit or Stand')
             self.hit_or_stand()
             
- 
-while True:
-    bj = BJ()
-    bj.play()
-    mydata = input('Want to play again? Press ENTER key...')
+
+def run():
+    
+    while True:
+        bj = BJ()
+        bj.play()
+        mydata = input('Want to play again? Press ENTER key...')
 
 
- 
+run()
       
  
